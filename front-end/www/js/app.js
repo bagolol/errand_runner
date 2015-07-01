@@ -50,9 +50,9 @@ var cities = [
     }
 ];
 
-example.controller('MapController', function($scope, $ionicLoading) {
+example.controller('MapController', function($scope) {
 
-    google.maps.event.addDomListener(window, 'load', function() {
+function initialize() {
 
         var myLatlng = new google.maps.LatLng(51.517399, -0.073590);
 
@@ -93,8 +93,8 @@ example.controller('MapController', function($scope, $ionicLoading) {
         for (i = 0; i < cities.length; i++){
             createMarker(cities[i]);
         }
+    };
 
-    });
-    google.maps.event.addDomListener(document.getElementById("map"), 'load', $scope.initialise);
+    google.maps.event.addDomListener(window, 'load', initialize())
 
 });
