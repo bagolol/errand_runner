@@ -1,7 +1,8 @@
 describe('Map page', function(){
   it('has a title', function(){
     browser.get('http://localhost:8100');
-    expect(element(by.className('title'))).toEqual('Errand Runner')
+    var title = element(by.className('title'));
+    expect(title.getText()).toEqual('Errand Runner');
 
   });
 });
