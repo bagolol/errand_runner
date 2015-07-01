@@ -35,6 +35,8 @@ gem 'devise'
 # gem 'capistrano-rails', group: :development
 
 group :development do
+
+  gem 'coveralls', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -49,7 +51,7 @@ group :development do
     gem "rspec-rails", "~> 2.14"
     gem "factory_girl_rails"
     gem 'ffaker'
-     gem "shoulda-matchers"
+    gem "shoulda-matchers"
   end
 
 end
