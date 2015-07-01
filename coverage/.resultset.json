@@ -1,0 +1,47 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/rocco/Makers/week10/errand_runner/lib/api_constraints.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null
+      ],
+      "/Users/rocco/Makers/week10/errand_runner/app/models/user.rb": [
+        1,
+        null,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/rocco/Makers/week10/errand_runner/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/rocco/Makers/week10/errand_runner/app/controllers/api/v1/users_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        2,
+        null,
+        null
+      ],
+      "/Users/rocco/Makers/week10/errand_runner/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ]
+    },
+    "timestamp": 1435755364
+  }
+}
