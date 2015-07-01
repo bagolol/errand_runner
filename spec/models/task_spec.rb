@@ -10,6 +10,7 @@ describe Task do
   it { should respond_to(:open) }
   it { should respond_to(:description) }
   it { should respond_to(:user_id) }
+  it { should belong_to :user }
 
 
   it { should validate_presence_of :title }

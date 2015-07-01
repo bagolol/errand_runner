@@ -5,6 +5,6 @@ FactoryGirl.define do
     lon 1
     description "MyString"
     open true
+    user
   end
-
 end

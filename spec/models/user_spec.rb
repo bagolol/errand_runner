@@ -7,7 +7,7 @@ describe User do
   subject { @user }
 
 
-
+  it { should have_many(:tasks) }
   it { should validate_presence_of(:email) }
   it { should validate_uniqueness_of(:email) }
   it { should validate_confirmation_of(:password) }
@@ -34,5 +34,21 @@ describe User do
   describe "when email is not present" do
     before { @user.email = " " }
     it { should_not be_valid }
+  end
+
+
+  describe "tasks association" do
+    before do
+      @user.save
+      3.times { FactoryGirl.create :task, user: @user }
+    end
+
+    it "destrys tasks together with their user" do
+      tasks = @user.tasks
+      @user.destroy
+      tasks.each do |task|
+        expect(Task.find(task)).to raise_error ActiveRecord::RecordNotFound
+      end
+    end
   end
 end
