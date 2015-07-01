@@ -14,4 +14,18 @@ describe Api::V1::TasksController do
     end
     it { should respond_with 200 }
   end
+
+  describe "GET #index" do
+    before(:each) do
+      4.times { FactoryGirl.create :task }
+      get :index
+    end
+
+    it "returns 4 records from the database" do
+      tasks_response = json_response
+      expect(tasks_response[:tasks]).not_to be_empty
+    end
+
+    it { should respond_with 200 }
+  end
 end
