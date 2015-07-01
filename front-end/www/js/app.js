@@ -21,14 +21,14 @@ var cities = [
     {
         city : 'Location 1',
         desc : 'Test',
-        lat : 52.238983,
-        long : -0.888509
+        lat : 51.520323,
+        long : -0.071961
     },
     {
         city : 'Location 2',
         desc : 'Test',
-        lat : 52.238168,
-        long : -52.238168
+        lat : 51.515984,
+        long : -0.070484
     },
     {
         city : 'Location 3',
