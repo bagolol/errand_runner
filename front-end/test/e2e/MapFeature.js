@@ -19,9 +19,12 @@ describe('Map page', function(){
   //   expect(map).toBe(true);
   // });
 
-  it('can display a map', function(){
-    element(by.css('.scroll')).click()
-    browser.pause();
+ xit('can display a map', function(){
+    var map = element(by.css('.scroll'))
+    var marker = element(by.tagName('title'))
+    browser.driver.sleep(3000)
+    marker.click()
+    browser.driver.sleep(2000)
     var textBox = element(by.css('h2'));
     expect(textBox.getText()).toContain('Pick up my bag')
   });
