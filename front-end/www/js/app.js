@@ -50,7 +50,7 @@ var cities = [
     }
 ];
 
-example.controller('MapController', function($scope) {
+example.controller('MapController', function($scope, $ionicPopup) {
 
 function initialize() {
 
@@ -97,4 +97,16 @@ function initialize() {
 
     google.maps.event.addDomListener(window, 'load', initialize())
 
+    $scope.showPopup = function() {
+        $ionicPopup.show({
+            template: '<input type="task">',
+            address: "Enter address",
+            title: "Task title",
+            description: "Task description",
+            buttons: [
+             { text: "Accept"},
+             { text: "Cancel"}
+             ]
+        });
+    };
 });
