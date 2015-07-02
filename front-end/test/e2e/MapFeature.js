@@ -20,8 +20,10 @@ describe('Map page', function(){
   // });
 
   it('can display a map', function(){
-    var marker = element(by.css('.scroll location 1')).click();
-    expect(marker.getText()).toContain('Location 1')
+    element(by.css('.scroll')).click()
+    browser.pause();
+    var textBox = element(by.css('h2'));
+    expect(textBox.getText()).toContain('Pick up my bag')
   });
 
 });

@@ -19,32 +19,32 @@ var example = angular.module('starter', ['ionic'])
 })
 var cities = [
     {
-        city : 'Location 1',
-        desc : 'Test',
+        city : 'Pick up my bag',
+        desc : 'I bought a bag and need it picked up from this shop',
         lat : 51.520323,
         long : -0.071961
     },
     {
-        city : 'Location 2',
-        desc : 'Test',
+        city : 'Buy me chocolate',
+        desc : 'I need chocolate from this shop',
         lat : 51.515984,
         long : -0.070484
     },
     {
-        city : 'Location 3',
-        desc : 'Test',
+        city : 'Bring me my wine',
+        desc : 'I need wine delivered to me',
         lat : 52.242452,
         long : -0.889882
     },
     {
-        city : 'Location 4',
-        desc : 'Test',
+        city : 'Shopping',
+        desc : 'I need someone to do my shopping',
         lat : 52.247234,
         long : -0.893567
     },
     {
-        city : 'Location 5',
-        desc : 'Test',
+        city : 'Pick up my wallet',
+        desc : 'I left my wallet in this bar, please bring it to me',
         lat : 52.241874,
         long : -0.883568
     }
@@ -73,7 +73,8 @@ function initialize() {
             var myLocation = new google.maps.Marker({
                 position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
                 map: map,
-                title: "My Location"
+                title: "My Location",
+                icon: ('https://maps.gstatic.com/mapfiles/ms2/micons/lightblue.png')
             });
         });
 
@@ -84,6 +85,7 @@ function initialize() {
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(info.lat, info.long),
                 map: $scope.map,
+                icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/pink.png',
                 animation: google.maps.Animation.DROP,
                 title: info.city
             });
