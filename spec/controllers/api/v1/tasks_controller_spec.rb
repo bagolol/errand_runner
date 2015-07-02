@@ -10,7 +10,7 @@ describe Api::V1::TasksController, type: :controller do
       end
 
       it "returns the information about a task on a hash" do
-        task_response = json_response
+        task_response = json_response[:task]
         expect(task_response[:title]).to eql @task.title
       end
 
@@ -40,7 +40,7 @@ describe Api::V1::TasksController, type: :controller do
       end
 
       it "renders the json representation for the task record just created" do
-        task_response = json_response
+        task_response = json_response[:task]
         expect(task_response[:title]).to eql @task_attributes[:title]
       end
 
@@ -61,7 +61,7 @@ describe Api::V1::TasksController, type: :controller do
       end
 
       it "renders the json representation for the updated task" do
-        task_response = json_response
+        task_response = json_response[:task]
         expect(task_response[:title]).to eql "Buy me chocolate"
       end
 
