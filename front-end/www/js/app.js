@@ -58,18 +58,9 @@ example.controller('MapController', function($scope, $ionicSideMenuDelegate) {
 
 function initialize() {
 
-        var myLatlng = new google.maps.LatLng(51.517399, -0.073590);
-
-        var mapOptions = {
-            center: myLatlng,
-            zoom: 16,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
         navigator.geolocation.getCurrentPosition(function(pos) {
-            map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+            newLocation = (new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+            map.setCenter(newLocation)
             var myLocation = new google.maps.Marker({
                 position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
                 map: map,
@@ -77,6 +68,16 @@ function initialize() {
                 icon: ('https://maps.gstatic.com/mapfiles/ms2/micons/lightblue.png')
             });
         });
+        var myLatlng = new google.maps.LatLng(51.517399, -0.073590);
+
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
 
         $scope.map = map;
         $scope.markers = [];
