@@ -30,6 +30,21 @@ describe Api::V1::TasksController, type: :controller do
 
     it { should respond_with 200 }
   end
+  describe "POST #create" do
+    context "when is successfully created" do
+      before(:each) do
+        user = FactoryGirl.create :user
+        @task_attributes = FactoryGirl.attributes_for :task
+        api_authorization_header user.auth_token
+        post :create, { user_id: user.id, task: @task_attributes }
+      end
 
+      it "renders the json representation for the task record just created" do
+        task_response = json_response
+        expect(task_response[:title]).to eql @task_attributes[:title]
+      end
 
+      it { should respond_with 201 }
+    end
+  end
 end
