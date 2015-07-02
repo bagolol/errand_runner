@@ -49,6 +49,7 @@ function initialize() {
         for (i = 0; i < cities.length; i++){
             createMarker(cities[i]);
         }
+
     };
 
     google.maps.event.addDomListener(window, 'load', initialize())
@@ -58,8 +59,28 @@ function initialize() {
     //Go to the guessing page
     $scope.onTouch = function(item,event){
         $scope.formData.save
-        console.log($scope.formData);
     };
+
+      $scope.codeAddress = function() {
+          var address = document.getElementById('address').value;  
+          var geocoder = new google.maps.Geocoder();
+          geocoder.geocode( { 'address': address}, function(results, status) {
+            if ( status == google.maps.GeocoderStatus.OK ) {
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+            console.log(latitude);
+            console.log(longitude);
+            $scope.formData.latitude = latitude;
+            $scope.formData.longitude = longitude;
+             console.log($scope.formData);
+
+            } else {
+              alert('Geocode was not successful for the following reason: ' + status);
+               }
+          });
+        };
+
+
 
 });
 
