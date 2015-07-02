@@ -21,8 +21,8 @@ var cities = [
     {
         city : 'Pick up my bag',
         desc : 'I bought a bag and need it picked up from this shop',
-        lat : 51.520323,
-        long : -0.071961
+        lat : 51.53347309999999,
+        long : -0.17546100000004117
     },
     {
         city : 'Buy me chocolate',
@@ -172,7 +172,4 @@ function initialize() {
     };
 
 });
-
-
- 
 
