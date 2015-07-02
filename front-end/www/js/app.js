@@ -69,7 +69,8 @@ function initialize() {
             var myLocation = new google.maps.Marker({
                 position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
                 map: map,
-                title: "My Location"
+                title: "My Location",
+                icon: ('https://maps.gstatic.com/mapfiles/ms2/micons/lightblue.png')
             });
         });
 
@@ -80,6 +81,7 @@ function initialize() {
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(info.lat, info.long),
                 map: $scope.map,
+                icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/pink.png',
                 animation: google.maps.Animation.DROP,
                 title: info.city
             });
