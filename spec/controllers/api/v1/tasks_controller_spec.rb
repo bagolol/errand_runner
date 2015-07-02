@@ -47,4 +47,35 @@ describe Api::V1::TasksController, type: :controller do
       it { should respond_with 201 }
     end
   end
+    describe "PUT/PATCH #update" do
+    before(:each) do
+      @user = FactoryGirl.create :user
+      @task = FactoryGirl.create :task, user: @user
+      api_authorization_header @user.auth_token
+    end
+
+    context "when is successfully updated" do
+      before(:each) do
+        patch :update, { user_id: @user.id, id: @task.id,
+              task: { title: "Buy me chocolate" } }
+      end
+
+      it "renders the json representation for the updated task" do
+        task_response = json_response
+        expect(task_response[:title]).to eql "Buy me chocolate"
+      end
+
+      it { should respond_with 200 }
+    end
+  end
+    describe "DELETE #destroy" do
+    before(:each) do
+      @user = FactoryGirl.create :user
+      @task = FactoryGirl.create :task, user: @user
+      api_authorization_header @user.auth_token
+      delete :destroy, { user_id: @user.id, id: @task.id }
+    end
+
+    it { should respond_with 204 }
+  end
 end
