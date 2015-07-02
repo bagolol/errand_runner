@@ -38,8 +38,9 @@
             <div class="spacer" style="width: 300px; height: 50px;"></div>
             <ion-content scroll="true">
                 <div id="locationField">
-                    <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
+                    <input id="autocomplete" placeholder="Enter your address" ng-focus="geolocate()" type="text"></input>
                 </div>
+                <form>
                 <table id="address">
                     <tr>
                         <td class="label">Street address</td>
@@ -63,7 +64,7 @@
                         </td>
                         <td class="label">Zip code</td>
                         <td class="wideField">
-                            <input class="field" id="postal_code" disabled="true"></input>
+                            <input class="field" id="" disabled="true" ng-model="formData.address" id="postal_code"></input>
                         </td>
                     </tr>
                     <tr>
@@ -73,10 +74,9 @@
                         </td>
                     </tr>
                 </table>
-                <form>
                     <label class="item item-input">
-                        <span class="input-label">Address</span>
-                        <input id="address" type="text">
+                        <span class="input-label">Postcode</span>
+                        <input id="postal_code" type="text" ng-model="formData.address" >
                     </label>
                     <label class="item item-input">
                         <span class="input-label">Task Title</span>
@@ -97,21 +97,6 @@
             </ion-content>
         </ion-side-menu>
     </ion-side-menus>
-    <script>
-    function geolocate() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var geolocation = new google.maps.LatLng(
-                    position.coords.latitude, position.coords.longitude);
-                var circle = new google.maps.Circle({
-                    center: geolocation,
-                    radius: position.coords.accuracy
-                });
-                autocomplete.setBounds(circle.getBounds());
-            });
-        }
-    }
-    </script>
 </body>
 
 </html>
