@@ -50,7 +50,7 @@ var cities = [
     }
 ];
 
-example.controller('MapController', function($scope, $ionicSideMenuDelegate) {
+example.controller('MapController', function($scope, $ionicSideMenuDelegate, $state, $stateParams) {
 
     $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
@@ -103,6 +103,14 @@ function initialize() {
     };
 
     google.maps.event.addDomListener(window, 'load', initialize())
+
+       $scope.formData = {};
+
+    //Go to the guessing page
+    $scope.onTouch = function(item,event){
+        $scope.formData.save
+        console.log($scope.formData);
+    };
 
 });
 
