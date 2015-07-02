@@ -5,7 +5,7 @@ FactoryGirl.define do
   lon 1
   lat 1
   open true
-  user_id 1
+  user
   end
 
 end
