@@ -47,12 +47,16 @@ group :development do
   gem 'spring'
 
 
-  group :test do
-    gem 'rspec-rails', '~> 3.1'
-    gem "factory_girl_rails"
-    gem 'ffaker'
-    gem "shoulda-matchers"
-  end
+
+group :development, :test do
+  gem "factory_girl_rails"
+  gem 'ffaker'
+end
+
+group :test do
+  gem "rspec-rails"
+  gem "shoulda-matchers"
+end
 
 end
 
