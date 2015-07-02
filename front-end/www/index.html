@@ -13,7 +13,7 @@
     <body ng-app="starter" ng-controller="MapController">
       <ion-nav-view></ion-nav-view>
         <ion-pane >
-          <ion-side-menus>
+          <ion-side-menus >
             <ion-side-menu-content>
                 <ion-header-bar class="bar-stable">
                     <h1 class="title">Errand Runner</h1>
@@ -24,7 +24,15 @@
                 </ion-content>
                 </ion-pane>
              <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+             <ion-footer-bar class="bar-stable">
+                    <button class="button button-block button-stable" ng-click="toggleLeft()">Add task</button>
+                </ion-footer-bar>
             </ion-side-menu-content>
+               <ion-side-menu side="left">
+                <ion-header-bar class="bar-stable">
+                    <h1 class="title">Add your task</h1>
+                </ion-header-bar>
+             </ion-side-menu>
         </ion-side-menus>
     </body>
 </html>
