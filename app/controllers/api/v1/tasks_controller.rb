@@ -10,7 +10,7 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def create
-    task = current_user.tasks.build(task_params)
+    task = Task.create(task_params)
     if task.save
       render json: task, status: 201, location: [:api, task]
     else
@@ -36,7 +36,7 @@ class Api::V1::TasksController < ApplicationController
   private
 
     def task_params
-      params.require(:task).permit(:title, :description, :lon, :lat)
+      params.require(:task).permit(:title, :description, :lon, :lat, :user_id)
     end
 end
 
