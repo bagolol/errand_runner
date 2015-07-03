@@ -17,6 +17,7 @@ describe Api::V1::TasksController, type: :controller do
       it { should respond_with 200 }
     end
   end
+
   describe "GET #index" do
     before(:each) do
       4.times { FactoryGirl.create :task }
@@ -27,9 +28,16 @@ describe Api::V1::TasksController, type: :controller do
       tasks_response = json_response
       expect(tasks_response[:tasks]).not_to be_empty
     end
+    it "returns the user object into each task" do
+      tasks_response = json_response[:tasks]
+      tasks_response.each do |task_response|
+        expect(task_response[:user]).to be_present
+      end
+    end
 
     it { should respond_with 200 }
   end
+
   describe "POST #create" do
     context "when is successfully created" do
       before(:each) do
@@ -45,9 +53,10 @@ describe Api::V1::TasksController, type: :controller do
       end
 
       it { should respond_with 201 }
-    end
+      end
   end
-    describe "PUT/PATCH #update" do
+
+  describe "PUT/PATCH #update" do
     before(:each) do
       @user = FactoryGirl.create :user
       @task = FactoryGirl.create :task, user: @user
@@ -68,7 +77,8 @@ describe Api::V1::TasksController, type: :controller do
       it { should respond_with 200 }
     end
   end
-    describe "DELETE #destroy" do
+
+  describe "DELETE #destroy" do
     before(:each) do
       @user = FactoryGirl.create :user
       @task = FactoryGirl.create :task, user: @user
