@@ -50,7 +50,7 @@ group :development do
 
 group :development, :test do
   gem "factory_girl_rails"
-  gem 'ffaker'
+  gem 'faker'
 end
 
 group :test do
