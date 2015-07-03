@@ -6,7 +6,8 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def index
-    respond_with Task.all
+    tasks = params[:task_ids].present? ? Task.find(params[:task_ids]) : Task.all
+    respond_with tasks
   end
 
   def create

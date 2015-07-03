@@ -23,20 +23,40 @@ describe Api::V1::TasksController, type: :controller do
       4.times { FactoryGirl.create :task }
       get :index
     end
+    context "when is not receiving any task_ids parameter" do
+      before(:each) do
+        get :index
+      end
 
-    it "returns 4 records from the database" do
-      tasks_response = json_response
-      expect(tasks_response[:tasks]).not_to be_empty
+      it "returns 4 records from the database" do
+        tasks_response = json_response
+        expect(tasks_response[:tasks]).not_to be_empty
+      end
+      it "returns the user object into each task" do
+        tasks_response = json_response[:tasks]
+        tasks_response.each do |task_response|
+          expect(task_response[:user]).to be_present
+        end
+      end
+
+      it { should respond_with 200 }
     end
-    it "returns the user object into each task" do
-      tasks_response = json_response[:tasks]
-      tasks_response.each do |task_response|
-        expect(task_response[:user]).to be_present
+    context "when task_ids parameter is sent" do
+      before(:each) do
+        @user = FactoryGirl.create :user
+        3.times { FactoryGirl.create :task, user: @user }
+        get :index, task_ids: @user.task_ids
+      end
+
+      it "returns just the tasks that belong to the user" do
+        tasks_response = json_response[:tasks]
+        tasks_response.each do |task_response|
+          expect(task_response[:user][:email]).to eql @user.email
+        end
       end
     end
-
-    it { should respond_with 200 }
   end
+
 
   describe "POST #create" do
     context "when is successfully created" do
