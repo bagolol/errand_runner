@@ -7,5 +7,4 @@ FactoryGirl.define do
     lon { Faker::Address.longitude }
     user
   end
-
 end
