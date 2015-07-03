@@ -2,7 +2,7 @@ require 'api_constraints'
 
 
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   # Api definition
   namespace :api, defaults: { format: :json },
                               constraints: { subdomain: 'api' }, path: '/'  do
@@ -15,4 +15,5 @@ Rails.application.routes.draw do
           resources :tasks, :only => [:show, :index]
     end
   end
+
 end
