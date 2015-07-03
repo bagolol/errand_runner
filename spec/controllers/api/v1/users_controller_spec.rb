@@ -62,12 +62,12 @@ describe Api::V1::UsersController do
 
     context "when is successfully updated" do
       before(:each) do
-        patch :update, { id: @user.id, user: { email: "newmail@example.com" } }
+        patch :update, { id: @user.id, user: { email: "newmail@example.com", username: "newm" } }
       end
 
       it "renders the json representation for the updated user" do
         user_response = json_response[:user]
-        expect(user_response[:email]).to eql "newmail@example.com"
+        expect(user_response[:username]).to eql "newm"
       end
 
       it { should respond_with 200 }
