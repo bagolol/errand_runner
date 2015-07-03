@@ -15,9 +15,9 @@ describe Api::V1::SessionsController, type: :controller do
         post :create, { session: credentials }
       end
 
-      it "returns the user record corresponding to the given credentials" do
+       it "returns the user record corresponding to the given credentials" do
         @user.reload
-        expect(json_response[:auth_token]).to eql @user.auth_token
+        expect(json_response[:user][:auth_token]).to eql @user.auth_token
       end
 
       it { should respond_with 200 }
