@@ -11,20 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150703145938) do
+=======
+ActiveRecord::Schema.define(version: 20150703081419) do
+>>>>>>> 810a7beb5ddb741d0a5c58329fd55895b9c58c62
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "tasks", force: :cascade do |t|
     t.string   "title"
+    t.decimal  "lat"
+    t.decimal  "lon"
     t.string   "description"
-    t.integer  "lon"
-    t.integer  "lat"
     t.boolean  "open"
-    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,8 +45,16 @@ ActiveRecord::Schema.define(version: 20150703145938) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "auth_token",             default: ""
+<<<<<<< HEAD
     t.string   "provider"
     t.string   "uid"
+=======
+    t.decimal  "lon"
+    t.decimal  "lat"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "username"
+>>>>>>> 810a7beb5ddb741d0a5c58329fd55895b9c58c62
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree
