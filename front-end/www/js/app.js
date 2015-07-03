@@ -40,8 +40,8 @@ var cities = [{
 }, {
   city: 'Pick up my wallet',
   desc: 'I left my wallet in this bar, please bring it to me',
-  lat: 52.241874,
-  long: -0.883568
+  lat: 51.919438,
+  long: 19.14513599999998
 }];
 
 example.controller('MapController', function($scope, $ionicSideMenuDelegate, $state, $stateParams) {
