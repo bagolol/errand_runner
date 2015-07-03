@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, height=device-height">
+        <title></title>
+        <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="lib/ionic/js/ionic.bundle.js"></script>
+        <script src="cordova.js"></script>
+        <script src="js/app.js"></script>
+    </head>
+    <body ng-app="starter" ng-controller="MapController">
+      <ion-nav-view></ion-nav-view>
+        <ion-pane >
+          <ion-side-menus>
+            <ion-side-menu-content>
+                <ion-header-bar class="bar-stable">
+                    <h1 class="title">Errand Runner</h1>
+                </ion-header-bar>
+                <ion-content>
+                <div id="map" data-tap-disabled="true" style="height:650px;width:1400px;margin:12px;box-shadow:0 3px 25px black;"></div>
+                   <button class="button button-block button-stable" ng-click="showPopup()">Add task</button>
+                </ion-content>
+                </ion-pane>
+             <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+            </ion-side-menu-content>
+        </ion-side-menus>
+    </body>
+</html>
