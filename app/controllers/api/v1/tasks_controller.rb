@@ -10,7 +10,7 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def create
-    task = Task.create(task_params)
+    task = current_user.tasks.build(task_params)
     if task.save
       render json: task, status: 201, location: [:api, task]
     else
