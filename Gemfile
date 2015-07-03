@@ -30,7 +30,7 @@ gem 'active_model_serializers'
 gem 'devise'
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+gem 'omniauth-facebook'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -45,14 +45,17 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'dotenv-rails'
 
 
-  group :test do
-    gem 'rspec-rails', '~> 3.1'
-    gem "factory_girl_rails"
-    gem 'ffaker'
-    gem "shoulda-matchers"
-  end
-
+group :development, :test do
+  gem "factory_girl_rails"
+  gem 'faker'
 end
 
+group :test do
+  gem "rspec-rails"
+  gem "shoulda-matchers"
+end
+
+end

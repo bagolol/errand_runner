@@ -1,11 +1,10 @@
 FactoryGirl.define do
   factory :task do
-    title "MyString"
-  description "MyString"
-  lon 1
-  lat 1
-  open true
-  user
+    title { Faker::Lorem.word }
+    description { Faker::Lorem.sentence }
+    open true
+    lat { Faker::Address.latitude }
+    lon { Faker::Address.longitude }
+    user
   end
-
 end
