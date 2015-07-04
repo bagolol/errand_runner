@@ -2,6 +2,10 @@ class Api::V1::UsersController < ApplicationController
    before_action :authenticate_with_token!, only: [:update, :destroy]
     respond_to :json
 
+  def tasks
+    user = User.find(params[:id])
+    respond_with user.tasks
+  end
 
   def show
     respond_with User.find(params[:id])
