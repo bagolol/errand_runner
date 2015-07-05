@@ -5,7 +5,8 @@ appCtrl.controller('DashCtrl', function($scope, $http) {
 
   $scope.newUser = function(){
     console.log($scope.userData)
-    var data = JSON.stringify($scope.userData)
+    var data = JSON.stringify({"user": $scope.userData})
+    console.log(data)
     var res = $http({
       method: 'POST',
       url: 'http://localhost:3000/users',
@@ -13,10 +14,10 @@ appCtrl.controller('DashCtrl', function($scope, $http) {
       data: data
     }).then(
       function() {
-        console.log('Check-in successful!!');
+        console.log(':)');
       },
       function() {
-        console.log('Broken');
+        console.log(':(');
       });
 
   }
