@@ -5,7 +5,17 @@ var tasks = [{
   description: 'I bought a bag and need it picked up from this shop',
   lat: 51.517399,
   long: -0.073590
+}, {
+   title: 'Bring my bag here',
+  description: 'after 6pm',
+  lat: 51.518752,
+  long: -0.081437
 }]
+
+  // var coordinates = [
+  //   new google.maps.LatLng( 51.517399, -0.073590),
+  //   new google.maps.LatLng(51.518752, -0.081437)
+  // ];
 
 
   ionic.Platform.ready(function() {
@@ -30,30 +40,7 @@ var tasks = [{
     };
     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-
-
-    //Marker + infowindow + angularjs compiled ng-click
-    // var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
-    // var compiled = $compile(contentString)($scope);
-
-    // var infowindow = new google.maps.InfoWindow({
-    //   content: compiled[0]
-    // });
-
-    // var marker = new google.maps.Marker({
-    //   position: myLatlng,
-    //   map: map,
-    //   title: 'Uluru (Ayers Rock)'
-    // });
-
-    // google.maps.event.addListener(marker, 'click', function() {
-    //   infowindow.open(map, marker);
-    // });
-
     $scope.map = map;
-  
-
-
   
 
   $scope.centerOnMe = function() {
@@ -94,8 +81,9 @@ var tasks = [{
 
     marker.content = '<div class="infoWindowContent">' + info.description + '</div>';
     marker.accept = '<button onclick="Accept()">Accept</button>'
+    marker.delivery = '<button onclick="showPopup()">Delivery address</button>'
     google.maps.event.addListener(marker, 'click', function() {
-      infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content + marker.accept);
+      infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content + marker.accept + marker.delivery);
       infoWindow.open($scope.map, marker);
     });
     $scope.markers.push(marker);
@@ -104,6 +92,19 @@ var tasks = [{
   for (i = 0; i < tasks.length; i++) {
     createMarker(tasks[i]);
   }
+
+
+
+// var markPath = new google.maps.Polyline({
+//     path: coordinates,
+//     geodesic: true,
+//     strokeColor: '#FF0000',
+//     strokeOpacity: 1.0,
+//     strokeWeight: 2
+//   });
+
+//   markPath.setMap(map);
+
 
 google.maps.event.addDomListener(window, 'load', $scope.initialize);
  });
@@ -124,4 +125,7 @@ google.maps.event.addDomListener(window, 'load', $scope.initialize);
         // }
     };
 
+    function showPopup() {
+      console.log('15 Nice Street');
+    };
 
