@@ -1,6 +1,12 @@
 appCtrl.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
 
-var tasks = []
+var tasks = [{
+  title: 'Pick up my bag',
+  description: 'I bought a bag and need it picked up from this shop',
+  lat: 51.517399,
+  long: -0.073590
+}]
+
 
   ionic.Platform.ready(function() {
 
@@ -24,6 +30,8 @@ var tasks = []
     };
     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+
+
     //Marker + infowindow + angularjs compiled ng-click
     // var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
     // var compiled = $compile(contentString)($scope);
@@ -43,10 +51,10 @@ var tasks = []
     // });
 
     $scope.map = map;
-  });
+  
 
 
-  google.maps.event.addDomListener(window, 'load', $scope.initialize);
+  
 
   $scope.centerOnMe = function() {
     if (!$scope.map) {
@@ -79,18 +87,20 @@ var tasks = []
       map: $scope.map,
       icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/pink.png',
       animation: google.maps.Animation.DROP,
-      title: info.city
+      title: info.title
     });
-    marker.content = '<div class="infoWindowContent">' + info.desc + '</div>';
+    marker.content = '<div class="infoWindowContent">' + info.description + '</div>';
     google.maps.event.addListener(marker, 'click', function() {
       infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
       infoWindow.open($scope.map, marker);
     });
     $scope.markers.push(marker);
+    console.log(tasks)
   }
 
   for (i = 0; i < tasks.length; i++) {
     createMarker(tasks[i]);
   }
-
+google.maps.event.addDomListener(window, 'load', $scope.initialize);
+ });
 });
