@@ -38,6 +38,8 @@ app.run(function($ionicPlatform) {
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+
+
   .state('login', {
     url: "/",
     templateUrl: "templates/login.html",
