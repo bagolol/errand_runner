@@ -13,6 +13,7 @@ window.localStorage['user_id'] = '1'
 var name = window.localStorage['name'] || 'you';
 console.log('Hello, ' + name);
 
+
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -26,6 +27,8 @@ app.run(function($ionicPlatform) {
     }
   });
 })
+
+
 
 .config(function($stateProvider, $urlRouterProvider) {
 

@@ -6,3 +6,15 @@
 .scroll {
   height: 100%;
 }
+
+    #centre {
+    top: 50%;
+    -webkit-transform: translateY(-80%);
+    -moz-transform: translateY(-80%);
+    -ms-transform: translateY(-80%);
+    -o-transform: translateY(-80%);
+    transform: translateY(-80%);
+    position: absolute !important;
+    margin:0 auto;
+    width:100%;
+}

@@ -33,14 +33,36 @@ appCtrl.controller('ChatsCtrl', function($scope, Chats) {
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
+ 
+
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
     Chats.remove(chat);
   }
 })
 
-appCtrl.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
+appCtrl.controller('ChatDetailCtrl', function($scope, $stateParams, Chats, $http) {
   $scope.chat = Chats.get($stateParams.chatId);
+
+   $scope.userChat = {}
+
+  $scope.newMessage = function(){
+    // console.log($scope.userChat)
+    var data = JSON.stringify({"chat": $scope.userChat})
+    console.log(data)
+    var res = $http({
+      method: 'POST',
+      url: 'http://localhost:3000/chats',
+      headers: {'Content-Type': 'application/json'},
+      data: data
+    }).then(
+      function() {
+        console.log('posted');
+      },
+      function() {
+        console.log('errors');
+      });
+    }
 })
 
 
