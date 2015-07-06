@@ -1,7 +1,11 @@
-appCtrl.controller('MapCtrl', function($scope, $ionicLoading, $compile, $http) {
+appCtrl.controller('MapCtrl', function($scope, $ionicLoading, $compile, $http, $stateParams, Tasks) {
 
 $scope.tasks = []
-console.log($scope.tasks.length)
+
+
+// $scope.task = $scope.tasks.get($stateParams.taskId)
+// console.log($scope.task)
+
   // var coordinates = [
   //   new google.maps.LatLng( 51.517399, -0.073590),
   //   new google.maps.LatLng(51.518752, -0.081437)
@@ -10,7 +14,7 @@ console.log($scope.tasks.length)
 
   ionic.Platform.ready(function() {
 
-    console.log(window.localStorage['test'])
+    console.log(tasks)
 
 
     $scope.updateMap = function(){
@@ -77,7 +81,7 @@ console.log($scope.tasks.length)
   $scope.markers = [];
   var infoWindow = new google.maps.InfoWindow();
   $scope.createMarker = function(info) {
-    console.log(info)
+    // console.log(info)
       var marker = new google.maps.Marker({
       position: new google.maps.LatLng(info.lat, info.lon),
       map: $scope.map,
@@ -87,9 +91,10 @@ console.log($scope.tasks.length)
     });
 
     marker.content = '<div class="infoWindowContent">' + info.description + '</div>';
-    marker.accept = '<a href="#/tab/task/{{task.id}}" ng-click="initialize()">Show more information</a>'
+     marker.id = info.id;
+    marker.accept = '<a href="#/tab/task/' + info.id +'">Show more information</a>'
     google.maps.event.addListener(marker, 'click', function() {
-      infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content + marker.accept);
+      infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content + marker.accept + marker.id);
       infoWindow.open($scope.map, marker);
     });
     $scope.markers.push(marker);
