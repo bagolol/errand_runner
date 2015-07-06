@@ -1,21 +1,10 @@
-appCtrl.controller('MapCtrl', function($scope, $ionicLoading, $compile, $http, $stateParams, Tasks) {
+appCtrl.controller('Map2Ctrl', function($scope, $ionicLoading, $compile, $http, $stateParams, Tasks) {
 
 $scope.tasks = []
 
-
-// $scope.task = $scope.tasks.get($stateParams.taskId)
-// console.log($scope.task)
-
-  // var coordinates = [
-  //   new google.maps.LatLng( 51.517399, -0.073590),
-  //   new google.maps.LatLng(51.518752, -0.081437)
-  // ];
-
+// 
 
   ionic.Platform.ready(function() {
-
-    console.log(tasks)
-
 
     $scope.updateMap = function(){
       $http.get('http://localhost:3000/tasks', {
@@ -28,12 +17,16 @@ $scope.tasks = []
         $scope.tasks.push(data.tasks[i])
       }
       $scope.placeMarkers()
+      console.log($scope.tasks)
+      $scope.task = $scope.tasks[$stateParams.taskId]
+      console.log($scope.task)
     }).
     error(function(data, status, headers, config) {
     })
     }
-    
+
     $scope.updateMap()
+    
 
     navigator.geolocation.getCurrentPosition(function(pos) {
       newLocation = (new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
@@ -53,7 +46,7 @@ $scope.tasks = []
       zoom: 16,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    var map = new google.maps.Map(document.getElementById("map2"), mapOptions);
 
     $scope.map = map;
   
@@ -81,7 +74,7 @@ $scope.tasks = []
   $scope.markers = [];
   var infoWindow = new google.maps.InfoWindow();
   $scope.createMarker = function(info) {
-    // console.log(info)
+    console.log(info)
       var marker = new google.maps.Marker({
       position: new google.maps.LatLng(info.lat, info.lon),
       map: $scope.map,
@@ -91,10 +84,9 @@ $scope.tasks = []
     });
 
     marker.content = '<div class="infoWindowContent">' + info.description + '</div>';
-     marker.id = info.id;
-    marker.accept = '<a href="#/tab/task/' + info.id +'">Show more information</a>'
+    marker.accept = '<a href="#/tab/task" ng-click="initialize()">Show more information</a>'
     google.maps.event.addListener(marker, 'click', function() {
-      infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content + marker.accept + marker.id);
+      infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content + marker.accept);
       infoWindow.open($scope.map, marker);
     });
     $scope.markers.push(marker);
@@ -123,19 +115,3 @@ google.maps.event.addDomListener(window, 'load', $scope.initialize);
  });
 
 });
-
-  function Accept(){
-      console.log("Task has been accepted");
-        //   for (var i = 0; i < markers.length; i++) {
-        //     if (markers[i].id == id) {
-        //         //Remove the marker from Map                  
-        //         markers[i].setMap(null);
- 
-        //         //Remove the marker from array.
-        //         markers.splice(i, 1);
-        //         return;
-        //     }
-        // }
-    };
-
-

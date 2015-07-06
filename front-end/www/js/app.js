@@ -100,12 +100,12 @@ app.run(function($ionicPlatform) {
       }
     }
   })
-  .state('tab.task-inf', {
+  .state('tab.task', {
     url: '/task/:taskId',
     views: {
-      'tab-map': {
-        templateUrl: 'templates/task-inf.html',
-        controller: 'MapCtrl'
+      'tab-task': {
+        templateUrl: 'templates/tab-task.html',
+        controller: 'Map2Ctrl'
       }
     }
   })

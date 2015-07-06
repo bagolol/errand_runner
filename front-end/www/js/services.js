@@ -48,3 +48,15 @@ appServices.factory('Chats', function() {
     }
   };
 });
+
+appServices.factory('Tasks', function() {
+  tasks = []
+
+   return {
+    all: function() {
+      return tasks;
+    }
+  }
+
+
+})
