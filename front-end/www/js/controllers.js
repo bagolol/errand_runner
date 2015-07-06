@@ -3,9 +3,6 @@ appCtrl = angular.module('starter.controllers', [])
 appCtrl.controller('DashCtrl', function($scope, $http, $state) {
   $scope.userData = {}
 
-  if (window.localStorage['token'] !== null) {
-    $state.go('tab.map')
-  } else {
 
     $scope.newUser = function() {
       console.log($scope.userData)
@@ -21,8 +18,10 @@ appCtrl.controller('DashCtrl', function($scope, $http, $state) {
         },
         data: data
       }).then(
-        function() {
-          console.log(':)');
+        function(res) {
+          console.log(res.data.user)
+          window.localStorage['auth_token'] = (res.data.user.auth_token);
+          window.localStorage['user_id'] = (res.data.user.id)
           $state.go('tab.map')
         },
         function() {
@@ -30,7 +29,6 @@ appCtrl.controller('DashCtrl', function($scope, $http, $state) {
         });
 
     }
-  }
 })
 
 appCtrl.controller('ChatsCtrl', function($scope, Chats) {

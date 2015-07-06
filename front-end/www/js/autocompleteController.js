@@ -1,4 +1,4 @@
-appCtrl.controller('AccountCtrl', function($scope) {
+appCtrl.controller('AccountCtrl', function($scope, $http) {
 
 var placeSearch, autocomplete;
 var componentForm = {
@@ -9,6 +9,7 @@ var componentForm = {
 };
 
 
+$scope.taskData = {}
 
   $scope.codeAddress = function() {
     var stnumber = document.getElementById('street_number').value
@@ -16,7 +17,6 @@ var componentForm = {
     var city = document.getElementById('locality').value
     var postcode = document.getElementById('postal_code').value
     var address = stnumber + ' ' + route + ' ' + city + ' ' + postcode
-    console.log(address)
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({
       'address': address
@@ -24,11 +24,9 @@ var componentForm = {
       if (status == google.maps.GeocoderStatus.OK) {
         var latitude = results[0].geometry.location.lat();
         var longitude = results[0].geometry.location.lng();
-        console.log(latitude);
-        console.log(longitude);
         $scope.taskData.lat = latitude;
-        $scope.taskData.long = longitude;
-        console.log($scope.taskData);
+        $scope.taskData.lon = longitude;
+        console.log($scope.taskData)
 
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
@@ -37,9 +35,26 @@ var componentForm = {
   };
 
 
-  $scope.taskData = {}
   $scope.newTask = function() {
-    console.log($scope.taskData)
+    $scope.taskData.user_id = window.localStorage['user_id']
+    var task = JSON.stringify({ "task": $scope.taskData })
+    console.log(task)
+    console.log(window.localStorage['auth_token'])
+    var res = $http({
+      method: 'POST',
+      url: 'http://localhost:3000/users/' + window.localStorage['user_id'] + '/tasks',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': window.localStorage['auth_token']
+      },
+      data: task
+    }).then(
+      function(res) {
+        console.log(res);
+      },
+      function() {
+        console.log(res);
+      });
   }
 
     ionic.Platform.ready(function(){
