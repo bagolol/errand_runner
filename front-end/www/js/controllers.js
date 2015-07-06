@@ -1,6 +1,6 @@
 appCtrl = angular.module('starter.controllers', [])
 
-appCtrl.controller('DashCtrl', function($scope, $http) {
+appCtrl.controller('DashCtrl', function($scope, $http, $state) {
   $scope.userData = {}
 
   $scope.newUser = function(){
@@ -15,6 +15,7 @@ appCtrl.controller('DashCtrl', function($scope, $http) {
     }).then(
       function() {
         console.log(':)');
+        $state.go('tab.map')
       },
       function() {
         console.log(':(');
