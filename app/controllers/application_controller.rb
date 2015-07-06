@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  # include Authenticable
+  include Authenticable
 
   protect_from_forgery
   after_filter :set_access_control_headers
