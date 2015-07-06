@@ -8,7 +8,7 @@
 app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 window.localStorage['token'] = 'BWhKkd1conUztjUhx9R2';
-window.localStorage['user'] = '1'
+window.localStorage['user_id'] = '1'
 
 var name = window.localStorage['name'] || 'you';
 console.log('Hello, ' + name);
@@ -37,6 +37,8 @@ app.run(function($ionicPlatform) {
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
+
+
 
   .state('login', {
     url: "/",
