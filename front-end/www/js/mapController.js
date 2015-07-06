@@ -14,9 +14,6 @@ $scope.tasks = []
 
   ionic.Platform.ready(function() {
 
-    console.log(tasks)
-
-
     $scope.updateMap = function(){
       $http.get('http://localhost:3000/tasks', {
       headers: {
@@ -32,7 +29,7 @@ $scope.tasks = []
     error(function(data, status, headers, config) {
     })
     }
-    
+
     $scope.updateMap()
 
     navigator.geolocation.getCurrentPosition(function(pos) {
@@ -56,7 +53,7 @@ $scope.tasks = []
     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
     $scope.map = map;
-  
+
 
   $scope.centerOnMe = function() {
     if (!$scope.map) {
@@ -92,7 +89,7 @@ $scope.tasks = []
 
     marker.content = '<div class="infoWindowContent">' + info.description + '</div>';
      marker.id = info.id;
-    marker.accept = '<a href="#/tab/task/' + info.id +'">Show more information</a>'
+    marker.accept = '<a onclick="reload()" href="#/tab/task/' + info.id +' ">Show more information</a>'
     google.maps.event.addListener(marker, 'click', function() {
       infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content + marker.accept + marker.id);
       infoWindow.open($scope.map, marker);
@@ -122,15 +119,17 @@ $scope.placeMarkers = function(){
 google.maps.event.addDomListener(window, 'load', $scope.initialize);
  });
 
+reload = function() {window.location.reload(true)};
+
 });
 
   function Accept(){
       console.log("Task has been accepted");
         //   for (var i = 0; i < markers.length; i++) {
         //     if (markers[i].id == id) {
-        //         //Remove the marker from Map                  
+        //         //Remove the marker from Map
         //         markers[i].setMap(null);
- 
+
         //         //Remove the marker from array.
         //         markers.splice(i, 1);
         //         return;
