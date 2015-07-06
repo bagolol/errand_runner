@@ -10,6 +10,9 @@ console.log($scope.tasks.length)
 
   ionic.Platform.ready(function() {
 
+    console.log(window.localStorage['test'])
+
+
     $scope.updateMap = function(){
       $http.get('http://localhost:3000/tasks', {
       headers: {
@@ -26,6 +29,7 @@ console.log($scope.tasks.length)
     })
     }
     
+    $scope.updateMap()
 
     navigator.geolocation.getCurrentPosition(function(pos) {
       newLocation = (new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
