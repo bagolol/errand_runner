@@ -100,7 +100,16 @@ app.run(function($ionicPlatform) {
         controller: 'AccountCtrl'
       }
     }
-  });
+  })
+  .state('tab.task-inf', {
+    url: '/task/:taskId',
+    views: {
+      'tab-map': {
+        templateUrl: 'templates/task-inf.html',
+        controller: 'MapCtrl'
+      }
+    }
+  })
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/#/tab/map');
