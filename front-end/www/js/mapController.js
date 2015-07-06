@@ -80,10 +80,9 @@ var tasks = [{
   
 
     marker.content = '<div class="infoWindowContent">' + info.description + '</div>';
-    marker.accept = '<button onclick="Accept()">Accept</button>'
-    marker.delivery = '<button onclick="showPopup()">Delivery address</button>'
+    marker.accept = '<a href="#/tab/task/{{task.id}}">Show more information</a>'
     google.maps.event.addListener(marker, 'click', function() {
-      infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content + marker.accept + marker.delivery);
+      infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content + marker.accept);
       infoWindow.open($scope.map, marker);
     });
     $scope.markers.push(marker);
@@ -125,7 +124,4 @@ google.maps.event.addDomListener(window, 'load', $scope.initialize);
         // }
     };
 
-    function showPopup() {
-      console.log('15 Nice Street');
-    };
 
