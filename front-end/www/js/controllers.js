@@ -3,6 +3,7 @@ appCtrl = angular.module('starter.controllers', [])
 appCtrl.controller('DashCtrl', function($scope, $http, $state) {
   $scope.userData = {}
 
+  if (window.localStorage['auth_token'] === undefined) {
 
     $scope.newUser = function() {
       console.log($scope.userData)
@@ -28,6 +29,9 @@ appCtrl.controller('DashCtrl', function($scope, $http, $state) {
           console.log(':(');
         });
 
+    }
+    } else {
+      $state.go('tab.map')
     }
 })
 
