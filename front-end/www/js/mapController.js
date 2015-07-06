@@ -80,7 +80,7 @@ var tasks = [{
   
 
     marker.content = '<div class="infoWindowContent">' + info.description + '</div>';
-    marker.accept = '<a href="#/tab/task/{{task.id}}">Show more information</a>'
+    marker.accept = '<a href="#/tab/task/{{task.id}}" ng-click="initialize()">Show more information</a>'
     google.maps.event.addListener(marker, 'click', function() {
       infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content + marker.accept);
       infoWindow.open($scope.map, marker);
