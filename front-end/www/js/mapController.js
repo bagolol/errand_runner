@@ -1,17 +1,7 @@
-appCtrl.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
+appCtrl.controller('MapCtrl', function($scope, $ionicLoading, $compile, $http) {
 
-var tasks = [{
-  title: 'Pick up my bag',
-  description: 'I bought a bag and need it picked up from this shop',
-  lat: 51.517399,
-  long: -0.073590
-}, {
-   title: 'Bring my bag here',
-  description: 'after 6pm',
-  lat: 51.518752,
-  long: -0.081437
-}]
-
+$scope.tasks = []
+console.log($scope.tasks.length)
   // var coordinates = [
   //   new google.maps.LatLng( 51.517399, -0.073590),
   //   new google.maps.LatLng(51.518752, -0.081437)
@@ -19,6 +9,23 @@ var tasks = [{
 
 
   ionic.Platform.ready(function() {
+
+    $scope.updateMap = function(){
+      $http.get('http://localhost:3000/tasks', {
+      headers: {
+                 'Authorization': window.localStorage['auth_token']
+               }
+               }).
+    success(function(data, status, headers, config) {
+      for (var i = 0; i < data.tasks.length; i++) {
+        $scope.tasks.push(data.tasks[i])
+      }
+      $scope.placeMarkers()
+    }).
+    error(function(data, status, headers, config) {
+    })
+    }
+    
 
     navigator.geolocation.getCurrentPosition(function(pos) {
       newLocation = (new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
@@ -61,23 +68,19 @@ var tasks = [{
     });
   };
 
-  $scope.clickTest = function() {
-    alert('Example of infowindow with ng-click')
-  };
 
   $scope.map = map;
   $scope.markers = [];
   var infoWindow = new google.maps.InfoWindow();
-  var createMarker = function(info) {
-    var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(info.lat, info.long),
+  $scope.createMarker = function(info) {
+    console.log(info)
+      var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(info.lat, info.lon),
       map: $scope.map,
       icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/pink.png',
       animation: google.maps.Animation.DROP,
       title: info.title
     });
-
-  
 
     marker.content = '<div class="infoWindowContent">' + info.description + '</div>';
     marker.accept = '<a href="#/tab/task/{{task.id}}">Show more information</a>'
@@ -88,9 +91,11 @@ var tasks = [{
     $scope.markers.push(marker);
   }
 
-  for (i = 0; i < tasks.length; i++) {
-    createMarker(tasks[i]);
+$scope.placeMarkers = function(){
+  for (i = 0; i < $scope.tasks.length; i++) {
+    $scope.createMarker($scope.tasks[i]);
   }
+}
 
 
 
