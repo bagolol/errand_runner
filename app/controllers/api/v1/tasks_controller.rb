@@ -6,11 +6,12 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def index
-    respond_with Task.all
+    respond_with Task.where(open: true)
   end
 
   def create
     task = current_user.tasks.build(task_params)
+    task.open = true
     if task.save
       render json: task, status: 201, location: [:api, task]
     else
