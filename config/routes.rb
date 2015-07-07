@@ -13,6 +13,13 @@ Rails.application.routes.draw do
           resources :users, :only => [:show, :create, :update, :destroy] do
             member do
               get :tasks
+              get :new_message
+              get :inbox
+              get :outbox
+              delete :destroy_message
+              get :show_messages
+              post :send_message
+
             end
             resources :tasks, :only => [:create, :update, :destroy, :show]
           end
@@ -20,5 +27,4 @@ Rails.application.routes.draw do
           resources :tasks, :only => [:show, :index]
     end
   end
-
 end

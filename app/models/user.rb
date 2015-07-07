@@ -11,6 +11,11 @@ class User < ActiveRecord::Base
 
   has_many :tasks, dependent: :destroy
 
+  acts_as_messageable :table_name => "messages",                         # default 'messages'
+                      :required   => [:topic, :body],                     # default [:topic, :body]
+                      :class_name => "ActsAsMessageable::Message",       # default "ActsAsMessageable::Message",
+                      :dependent  => :destroy                            # default :nullify
+
   def generate_authentication_token!
     begin
       self.auth_token = Devise.friendly_token
