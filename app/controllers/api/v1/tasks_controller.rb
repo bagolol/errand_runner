@@ -20,10 +20,8 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def update
-    byebug
     task = current_user.tasks.find(params[:id])
     if task.update(task_params)
-      byebug
       render json: task, status: 200, location: [:api, task]
     else
       render json: { errors: task.errors }, status: 422
