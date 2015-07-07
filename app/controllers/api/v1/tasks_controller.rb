@@ -36,7 +36,6 @@ class Api::V1::TasksController < ApplicationController
   private
 
     def task_params
-      params.require(:task).permit(:title, :description, :lon, :lat, :user_id)
+      params.require(:task).permit(:title, :description, :pick_up_lon, :pick_up_lat, :pick_up_address, :drop_off_lat, :drop_off_lon, :drop_off_address, :user_id)
     end
 end
-
