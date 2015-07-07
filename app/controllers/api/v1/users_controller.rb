@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
-   before_action :authenticate_with_token!, only: [:update, :destroy]
-    respond_to :json
-    protect_from_forgery :except => :auth
+  before_action :authenticate_with_token!, only: [:update, :destroy]
+  respond_to :json
+
 
   def tasks
     user = User.find(params[:id])
@@ -73,16 +73,6 @@ class Api::V1::UsersController < ApplicationController
 
 
   private
-
-    def auth
-      if current_user
-        auth = Pusher[params[:channel_name]].authenticate(params[:socket_id])
-
-        render :text => params[:callback] + "(" + auth.to_json + ")", :content_type => 'application/javascript'
-      else
-        render :text => "Forbidden", :status => '403'
-      end
-    end
 
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :username, :last_name, :first_name)
