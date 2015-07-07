@@ -1,6 +1,6 @@
 class Api::V1::TasksController < ApplicationController
   respond_to :json
-  before_action :authenticate_with_token!, only: [:update, :destroy]
+  before_action :authenticate_with_token!, only: [:destroy]
 
   def show
     respond_with Task.find(params[:id])
