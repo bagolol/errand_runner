@@ -30,10 +30,10 @@ module ErrandRunner
     g.helper = false
   end
 
-   config.middleware.insert_before 0, "Rack::Cors" do
+   config.middleware.use Rack::Cors do
       allow do
         origins '*'
-        resource '*', :headers => :any, :methods => [:get, :post, :options]
+        resource '*', :headers => :any, :methods => [:get, :post, :options, :patch, :put]
       end
     end
 
