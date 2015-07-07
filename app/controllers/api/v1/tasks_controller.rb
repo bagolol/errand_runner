@@ -1,6 +1,6 @@
 class Api::V1::TasksController < ApplicationController
   respond_to :json
-  before_action :authenticate_with_token!, only: [:destroy]
+  before_action :authenticate_with_token!, only: [:update, :destroy]
 
   def show
     respond_with Task.find(params[:id])
@@ -37,6 +37,6 @@ class Api::V1::TasksController < ApplicationController
   private
 
     def task_params
-      params.require(:task).permit(:title, :description, :pick_up_lon, :pick_up_lat, :pick_up_address, :drop_off_lat, :drop_off_lon, :drop_off_address, :user_id)
+      params.require(:task).permit(:title, :description, :pick_up_lon, :pick_up_lat, :open, :pick_up_address, :drop_off_lat, :drop_off_lon, :drop_off_address, :user_id)
     end
 end
