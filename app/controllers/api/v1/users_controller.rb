@@ -45,7 +45,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def conversations
-    respond_with current_user.received_messages.conversations
+    respond_with current_user.messages
   end
 
   def destroy_message
