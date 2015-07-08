@@ -44,8 +44,8 @@ class Api::V1::UsersController < ApplicationController
     respond_with current_user.sent_messages
   end
 
-  def show_messages
-    respond_with current_user.messages.find(params[:id])
+  def conversations
+    respond_with current_user.received_messages.conversations
   end
 
   def destroy_message

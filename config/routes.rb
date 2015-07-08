@@ -17,7 +17,7 @@ Rails.application.routes.draw do
               get :inbox
               get :outbox
               delete :destroy_message
-              get :show_messages
+              get :conversations
               post :send_message
 
             end
