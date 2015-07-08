@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706163903) do
+ActiveRecord::Schema.define(version: 20150708160815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(version: 20150706163903) do
     t.decimal  "pick_up_lat"
     t.decimal  "pick_up_lon"
     t.string   "description"
-    t.boolean  "open"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.boolean  "open",             default: true
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "user_id"
     t.string   "pick_up_address"
     t.string   "drop_off_address"
