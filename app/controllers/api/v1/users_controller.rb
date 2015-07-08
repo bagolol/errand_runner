@@ -63,10 +63,11 @@ class Api::V1::UsersController < ApplicationController
 
   def send_message
     to = User.find_by_email(params[:user][:to])
-    channel = params[:user][:to]
-    puts channel
+    user_id = params[:id]
+    email = params[:user][:to]
+    channel = email + user_id
     message = current_user.send_message(to, params[:user][:topic], params[:user][:body])
-   Pusher[channel].trigger('my_event', {
+    Pusher[channel].trigger('my_event', {
       message: message
     })
     render json: message, status: 200
