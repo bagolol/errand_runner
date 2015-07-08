@@ -7,7 +7,7 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def index
-    respond_with Task.all
+    respond_with Task.where(open: true)
   end
 
   def create
