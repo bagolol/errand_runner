@@ -14,17 +14,18 @@ with errand_runner you can:
 
 ### user stories
 
-as a busy person  
-so that I can outsource errands
-I would like to create a task
+```
+- [x] as a busy person  
+      so that I can outsource errands
+      I would like to create a task
  
-as a busy person
-so that I can find a nearby helper
-I would like to place my task on a map visible to all
+- [x] as a busy person
+      so that I can find a nearby helper
+      I would like to place my task on a map visible to all
  
-as a busy person  
-so that I can outsource many errands
-I would like to create a list of tasks
+- [x] as a busy person  
+     so that I can outsource many errands
+     I would like to create a list of tasks
  
 as a busy person
 so that I can find nearby helpers
@@ -49,6 +50,8 @@ I would like to be notified it has been accepted and by whom
 as a helper
 So that know where to deliver
 I would like the directions from point of collection to delivery address
+
+```
 
 
 ### technology
