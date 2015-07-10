@@ -62,6 +62,8 @@ I would like the directions from point of collection to delivery address
 
 ### api
 
+* documentation currently being created
+
 ### Installation
 
 * tbc
