@@ -15,17 +15,17 @@ with errand_runner you can:
 ### user stories
 
 ```
-- [x] as a busy person  
-      so that I can outsource errands
-      I would like to create a task
+as a busy person  
+so that I can outsource errands
+I would like to create a task
  
-- [x] as a busy person
-      so that I can find a nearby helper
-      I would like to place my task on a map visible to all
+as a busy person
+so that I can find a nearby helper
+I would like to place my task on a map visible to all
  
-- [x] as a busy person  
-     so that I can outsource many errands
-     I would like to create a list of tasks
+as a busy person  
+so that I can outsource many errands
+I would like to create a list of tasks
  
 as a busy person
 so that I can find nearby helpers
