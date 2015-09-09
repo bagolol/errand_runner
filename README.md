@@ -60,10 +60,3 @@ I would like the directions from point of collection to delivery address
 * the api is based on rails and hosted on heroku
 * testing was achieved using rspec, protractor and karma
 
-### api
-
-* documentation currently being created
-
-### Installation
-
-* tbc
